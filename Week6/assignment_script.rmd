@@ -1,0 +1,54 @@
+```{r}
+library(gapminder)
+library(tidyverse)
+```
+**I make a function that takes 2 arguments. A nation and a year. I then check if the year is within the gapminder dataset and stop the function if it isn't. I then "query" the gapminder dataset by making a subset consisting of the row which has the country column be equal to nation and and the year be equal to the year given in the argument. I return the product of the population and gdpPercap for that given row.**
+
+**Note:** For this html i have commented out the defensive part of the function, as rmd is not able to knit a code-chunk where an error is thrown. This could be solved by using a try-catch, but this must be for another time. This means that there will be printed an empty string for the year 2017. 
+```{r}
+calc_GDP <- function(nation = NULL, year = 0){
+  
+  #if(!year %in% gapminder$year){
+   # stop()
+  #}
+  
+  row = gapminder[which(gapminder$country == nation & gapminder$year == year), ]
+  
+  return(row$pop * row$gdpPercap)
+}
+
+#The function is then tested with the following series of years
+years <- c(1967, 1977, 1987, 1997, 2007, 2017)
+
+#And a for loop that runs the function for each year. 
+for(year in years){
+  print(paste("In the year ", year, " the GDP was: ", calc_GDP("Denmark", year)))
+}
+```
+**In the output we can see that the functino throws an error because 2017 is not withing the dataset.**
+
+**In the next exercise i start by transforming the gapminder data structure (a tibble) into a dataframe. I find this more intuitive to work with. I then create a for-loop that loops through every row in gapminder and asks whether the first letter of the country is "B". This can be done as shown on line 35. If it passes the check, i then check the same row for the life-expectancy and print accordingly in the console. **
+```{r}
+gapminder_frame = as.data.frame(gapminder)
+
+for (row in 1:nrow(gapminder_frame)) {
+  row <- gapminder_frame[row,]
+  
+  if(substring(row$country, 1, 1) == "B"){
+    print(paste("For the country ", row$country, " in the year ", row$year, " the life expectancy is: "))
+    if(row$lifeExp < 50){
+      print("lower than or equal to 50")
+    } else if(row$lifeExp > 50 & row$lifeExp < 70){
+      print("between 50 and 70")
+    } else if(row$lifeExp > 70){
+      print("greater than or equal to 70")
+    }
+  } 
+}
+
+```
+
+
+
+
+
