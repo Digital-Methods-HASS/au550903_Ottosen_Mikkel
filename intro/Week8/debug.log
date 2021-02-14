@@ -1,0 +1,5 @@
+[1102/090720.696:ERROR:process_reader_win.cc(151)] SuspendThread: Adgang nægtet. (0x5)
+[1102/090720.704:ERROR:process_reader_win.cc(151)] SuspendThread: Adgang nægtet. (0x5)
+[1102/090720.864:ERROR:process_reader_win.cc(151)] SuspendThread: Adgang nægtet. (0x5)
+[1102/090720.864:ERROR:process_reader_win.cc(151)] SuspendThread: Adgang nægtet. (0x5)
+[1102/092323.365:ERROR:directory_reader_win.cc(43)] FindFirstFile: Den angivne sti blev ikke fundet. (0x3)
